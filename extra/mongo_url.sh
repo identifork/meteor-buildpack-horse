@@ -8,11 +8,15 @@
 #
 echo "-----> Adding profile script to resolve MONGO_URL from mongolab addon"
 cat > "$APP_CHECKOUT_DIR"/.profile.d/mongo_url.sh <<EOF
-  #!/bin/bash
+  !/bin/bash
   if [ -z \$MONGO_URL ] ; then
     export MONGO_URL=\${MONGODB_URI:-\${MONGOLAB_URI:-\$MONGOHQ_URL}}
   fi
   if [ -z \$MONGO_URL ] ; then
+    echo "ROOT_URL: $ROOT_URL"
+    echo "MONGO_URL: $MONGO_URL"
+    
+    env
     echo "meteor-buildpack-horse: MONGO_URL missing, you must define it for meteor to work."
   fi
 EOF

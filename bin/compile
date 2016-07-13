@@ -23,6 +23,11 @@ export_env_dir() {
   fi
 }
 
+echo "ROOT_URL: $ROOT_URL"
+echo "MONGO_URL: $MONGO_URL"
+
+env
+
 export_env_dir $3
 
 # Enable verbose debugging if configured to -- though this has to come after
